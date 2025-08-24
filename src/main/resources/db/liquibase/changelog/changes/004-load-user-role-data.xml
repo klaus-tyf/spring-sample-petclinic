@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd">
+
+    <changeSet id="insert-default-roles" author="claude">
+        <comment>Insert default roles</comment>
+        <insert tableName="roles">
+            <column name="id" value="1"/>
+            <column name="name" value="USER"/>
+            <column name="description" value="Regular user with basic access"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="id" value="2"/>
+            <column name="name" value="VET"/>
+            <column name="description" value="Veterinarian with access to vet features"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="id" value="3"/>
+            <column name="name" value="ADMIN"/>
+            <column name="description" value="Administrator with full access"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-default-users" author="claude">
+        <comment>Insert 10 default users with password P@ssword</comment>
+        <!-- Password is BCrypt encoded P@ssword -->
+        <insert tableName="users">
+            <column name="id" value="1"/>
+            <column name="username" value="user"/>
+            <column name="password" value="$2a$10$ebyRY8wQQAhcW.u4Qm4jPuUl3sQxP.TCGBmrF3iU1.rAuUqQh0UJS"/>
+            <column name="email" value="user@petclinic.com"/>
+            <column name="first_name" value="John"/>
+            <column name="last_name" value="User"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="id" value="2"/>
+            <column name="username" value="vet"/>
+            <column name="password" value="$2a$10$ebyRY8wQQAhcW.u4Qm4jPuUl3sQxP.TCGBmrF3iU1.rAuUqQh0UJS"/>
+            <column name="email" value="vet@petclinic.com"/>
+            <column name="first_name" value="Dr. Jane"/>
+            <column name="last_name" value="Veterinarian"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="id" value="3"/>
+            <column name="username" value="admin"/>
+            <column name="password" value="$2a$10$ebyRY8wQQAhcW.u4Qm4jPuUl3sQxP.TCGBmrF3iU1.rAuUqQh0UJS"/>
+            <column name="email" value="admin@petclinic.com"/>
+            <column name="first_name" value="Admin"/>
+            <column name="last_name" value="Administrator"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="id" value="4"/>
+            <column name="username" value="alice"/>
+            <column name="password" value="$2a$10$ebyRY8wQQAhcW.u4Qm4jPuUl3sQxP.TCGBmrF3iU1.rAuUqQh0UJS"/>
+            <column name="email" value="alice@petclinic.com"/>
+            <column name="first_name" value="Alice"/>
+            <column name="last_name" value="Johnson"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="id" value="5"/>
+            <column name="username" value="bob"/>
+            <column name="password" value="$2a$10$ebyRY8wQQAhcW.u4Qm4jPuUl3sQxP.TCGBmrF3iU1.rAuUqQh0UJS"/>
+            <column name="email" value="bob@petclinic.com"/>
+            <column name="first_name" value="Bob"/>
+            <column name="last_name" value="Smith"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="id" value="6"/>
+            <column name="username" value="charlie"/>
+            <column name="password" value="$2a$10$ebyRY8wQQAhcW.u4Qm4jPuUl3sQxP.TCGBmrF3iU1.rAuUqQh0UJS"/>
+            <column name="email" value="charlie@petclinic.com"/>
+            <column name="first_name" value="Charlie"/>
+            <column name="last_name" value="Brown"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="id" value="7"/>
+            <column name="username" value="diana"/>
+            <column name="password" value="$2a$10$ebyRY8wQQAhcW.u4Qm4jPuUl3sQxP.TCGBmrF3iU1.rAuUqQh0UJS"/>
+            <column name="email" value="diana@petclinic.com"/>
+            <column name="first_name" value="Diana"/>
+            <column name="last_name" value="Wilson"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="id" value="8"/>
+            <column name="username" value="eve"/>
+            <column name="password" value="$2a$10$ebyRY8wQQAhcW.u4Qm4jPuUl3sQxP.TCGBmrF3iU1.rAuUqQh0UJS"/>
+            <column name="email" value="eve@petclinic.com"/>
+            <column name="first_name" value="Eve"/>
+            <column name="last_name" value="Davis"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="id" value="9"/>
+            <column name="username" value="frank"/>
+            <column name="password" value="$2a$10$ebyRY8wQQAhcW.u4Qm4jPuUl3sQxP.TCGBmrF3iU1.rAuUqQh0UJS"/>
+            <column name="email" value="frank@petclinic.com"/>
+            <column name="first_name" value="Frank"/>
+            <column name="last_name" value="Miller"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="id" value="10"/>
+            <column name="username" value="grace"/>
+            <column name="password" value="$2a$10$ebyRY8wQQAhcW.u4Qm4jPuUl3sQxP.TCGBmrF3iU1.rAuUqQh0UJS"/>
+            <column name="email" value="grace@petclinic.com"/>
+            <column name="first_name" value="Grace"/>
+            <column name="last_name" value="Taylor"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="assign-user-roles" author="claude">
+        <comment>Assign roles to users</comment>
+        <!-- user - USER role -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        
+        <!-- vet - VET role -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="2"/>
+        </insert>
+        
+        <!-- admin - ADMIN, USER, VET roles -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="3"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" value="3"/>
+            <column name="role_id" value="2"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" value="3"/>
+            <column name="role_id" value="3"/>
+        </insert>
+        
+        <!-- alice - USER role -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="4"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        
+        <!-- bob - VET role -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="5"/>
+            <column name="role_id" value="2"/>
+        </insert>
+        
+        <!-- charlie - USER role -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="6"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        
+        <!-- diana - VET role -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="7"/>
+            <column name="role_id" value="2"/>
+        </insert>
+        
+        <!-- eve - ADMIN role -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="8"/>
+            <column name="role_id" value="3"/>
+        </insert>
+        
+        <!-- frank - USER role -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="9"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        
+        <!-- grace - VET role -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="10"/>
+            <column name="role_id" value="2"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
