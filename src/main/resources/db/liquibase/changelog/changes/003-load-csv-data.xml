@@ -15,15 +15,17 @@
 		</loadData>
 	</changeSet>
 
-	<changeSet id="load-specialties-csv-data" author="system">
+	<!-- REMOVED: Specialties CSV loading changeset because data is already inserted by schema changeset 009-insert-specialties -->
+	<!--
+	<changeSet id="load-specialties-from-csv" author="system">
 		<comment>Load specialties data from CSV</comment>
-		<loadData file="data/specialties.csv"
-				  relativeToChangelogFile="true"
-				  tableName="specialties">
-			<column name="id" type="numeric"/>
-			<column name="name" type="string"/>
-		</loadData>
+		<sql>
+			MERGE INTO specialties (id, name) VALUES (1, 'radiology');
+			MERGE INTO specialties (id, name) VALUES (2, 'surgery');
+			MERGE INTO specialties (id, name) VALUES (3, 'dentistry');
+		</sql>
 	</changeSet>
+	-->
 
 	<changeSet id="load-vet-specialties-csv-data" author="system">
 		<comment>Load vet specialties mapping data from CSV</comment>
@@ -35,6 +37,8 @@
 		</loadData>
 	</changeSet>
 
+	<!-- REMOVED: Pet types CSV loading changeset because data is already inserted by schema changeset 008-insert-pet-types -->
+	<!--
 	<changeSet id="load-types-csv-data" author="system">
 		<comment>Load pet types data from CSV</comment>
 		<loadData file="data/types.csv"
@@ -44,6 +48,7 @@
 			<column name="name" type="string"/>
 		</loadData>
 	</changeSet>
+	-->
 
 	<changeSet id="load-owners-csv-data" author="system">
 		<comment>Load owners data from CSV</comment>
