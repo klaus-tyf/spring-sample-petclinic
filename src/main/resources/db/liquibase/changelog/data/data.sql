@@ -1,0 +1,11 @@
+-- Data is now loaded from CSV files via Liquibase changesets
+-- See changes/003-load-csv-data.xml for CSV data loading configuration
+
+-- The following data is now managed through CSV files:
+-- - vets.csv: Veterinarian information
+-- - specialties.csv: Medical specialties (loaded via schema changesets)
+-- - vet_specialties.csv: Mapping between vets and their specialties
+-- - types.csv: Pet types (loaded via schema changesets)
+-- - owners.csv: Pet owner information
+-- - pets.csv: Pet information
+-- - visits.csv: Veterinary visit records

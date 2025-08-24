@@ -16,5 +16,6 @@
     <property name="datetimeType" value="datetime" dbms="oracle, mssql, postgresql, h2"/>
 
     <include file="changes/001-create-vets-table.xml" relativeToChangelogFile="true"/>
+    <include file="changes/003-load-csv-data.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

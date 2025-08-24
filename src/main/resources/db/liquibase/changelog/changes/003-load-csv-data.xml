@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd">
+
+	<changeSet id="load-vets-csv-data" author="system">
+		<comment>Load veterinarians data from CSV</comment>
+		<loadData file="data/vets.csv"
+				  relativeToChangelogFile="true"
+				  tableName="vets">
+			<column name="id" type="numeric"/>
+			<column name="first_name" type="string"/>
+			<column name="last_name" type="string"/>
+		</loadData>
+	</changeSet>
+
+	<changeSet id="load-specialties-csv-data" author="system">
+		<comment>Load specialties data from CSV</comment>
+		<loadData file="data/specialties.csv"
+				  relativeToChangelogFile="true"
+				  tableName="specialties">
+			<column name="id" type="numeric"/>
+			<column name="name" type="string"/>
+		</loadData>
+	</changeSet>
+
+	<changeSet id="load-vet-specialties-csv-data" author="system">
+		<comment>Load vet specialties mapping data from CSV</comment>
+		<loadData file="data/vet_specialties.csv"
+				  relativeToChangelogFile="true"
+				  tableName="vet_specialties">
+			<column name="vet_id" type="numeric"/>
+			<column name="specialty_id" type="numeric"/>
+		</loadData>
+	</changeSet>
+
+	<changeSet id="load-types-csv-data" author="system">
+		<comment>Load pet types data from CSV</comment>
+		<loadData file="data/types.csv"
+				  relativeToChangelogFile="true"
+				  tableName="types">
+			<column name="id" type="numeric"/>
+			<column name="name" type="string"/>
+		</loadData>
+	</changeSet>
+
+	<changeSet id="load-owners-csv-data" author="system">
+		<comment>Load owners data from CSV</comment>
+		<loadData file="data/owners.csv"
+				  relativeToChangelogFile="true"
+				  tableName="owners">
+			<column name="id" type="numeric"/>
+			<column name="first_name" type="string"/>
+			<column name="last_name" type="string"/>
+			<column name="address" type="string"/>
+			<column name="city" type="string"/>
+			<column name="telephone" type="string"/>
+		</loadData>
+	</changeSet>
+
+	<changeSet id="load-pets-csv-data" author="system">
+		<comment>Load pets data from CSV</comment>
+		<loadData file="data/pets.csv"
+				  relativeToChangelogFile="true"
+				  tableName="pets">
+			<column name="id" type="numeric"/>
+			<column name="name" type="string"/>
+			<column name="birth_date" type="date"/>
+			<column name="type_id" type="numeric"/>
+			<column name="owner_id" type="numeric"/>
+		</loadData>
+	</changeSet>
+
+	<changeSet id="load-visits-csv-data" author="system">
+		<comment>Load visits data from CSV</comment>
+		<loadData file="data/visits.csv"
+				  relativeToChangelogFile="true"
+				  tableName="visits">
+			<column name="id" type="numeric"/>
+			<column name="pet_id" type="numeric"/>
+			<column name="visit_date" type="date"/>
+			<column name="description" type="string"/>
+		</loadData>
+	</changeSet>
+
+</databaseChangeLog>
