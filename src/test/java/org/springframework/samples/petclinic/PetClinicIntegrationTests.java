@@ -19,6 +19,7 @@ package org.springframework.samples.petclinic;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -27,21 +28,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.samples.petclinic.vet.VetRepository;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@SpringBootTest
+@WithMockUser(roles = "ADMIN")
 public class PetClinicIntegrationTests {
-
-	@LocalServerPort
-	int port;
-
 	@Autowired
 	private VetRepository vets;
 
 	@Autowired
-	private RestTemplateBuilder builder;
+	private MockMvc mockMvc;
 
 	@Test
 	void testFindAll() {
@@ -50,14 +53,12 @@ public class PetClinicIntegrationTests {
 	}
 
 	@Test
-	void testOwnerDetails() {
-		RestTemplate template = builder.rootUri("http://localhost:" + port).build();
-		ResponseEntity<String> result = template.exchange(RequestEntity.get("/owners/1").build(), String.class);
-		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
-	}
+	void testOwnerDetails() throws Exception {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PetClinicApplication.class, args);
+		mockMvc.perform(get("/owners/1"))
+			.andExpect( status().isOk());
+//		RestTemplate template = builder.rootUri("http://localhost:" + port).build();
+//		ResponseEntity<String> result = template.exchange(RequestEntity.get("/owners/1").build(), String.class);
+//		assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
-
 }
