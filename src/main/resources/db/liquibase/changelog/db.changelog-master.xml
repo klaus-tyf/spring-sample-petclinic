@@ -15,7 +15,8 @@
     <property name="datetimeType" value="datetime(6)" dbms="mysql, mariadb"/>
     <property name="datetimeType" value="datetime" dbms="oracle, mssql, postgresql, h2"/>
 
-    <include file="changes/001-create-vets-table.xml" relativeToChangelogFile="true"/>
+        <include file="changes/001-create-vets-table.xml" relativeToChangelogFile="true"/>
+    <include file="changes/002-create-users-and-authorities-tables.xml" relativeToChangelogFile="true"/>
     <include file="changes/003-load-csv-data.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
