@@ -1,4 +1,4 @@
-package org.springframework.samples.config;
+package org.springframework.samples.petclinic.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

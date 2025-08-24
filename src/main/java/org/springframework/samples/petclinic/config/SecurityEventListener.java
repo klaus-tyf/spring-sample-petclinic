@@ -1,4 +1,4 @@
-package org.springframework.samples.config;
+package org.springframework.samples.petclinic.config;
 
 import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;

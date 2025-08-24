@@ -1,4 +1,4 @@
-package org.springframework.samples.config;
+package org.springframework.samples.petclinic.config;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
