@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.samples.petclinic.system;
+package org.springframework.samples.petclinic.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
