@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.29.xsd">
+
+	<!-- Create vets table -->
+	<changeSet id="001-create-vets-table" author="petclinic">
+		<createTable tableName="vets">
+			<column name="id" type="INTEGER" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="first_name" type="VARCHAR(30)"/>
+			<column name="last_name" type="VARCHAR(30)"/>
+		</createTable>
+
+		<createIndex indexName="vets_last_name" tableName="vets">
+			<column name="last_name"/>
+		</createIndex>
+
+		<rollback>
+			<dropTable tableName="vets"/>
+		</rollback>
+	</changeSet>
+
+	<!-- Create specialties table -->
+	<changeSet id="002-create-specialties-table" author="petclinic">
+		<createTable tableName="specialties">
+			<column name="id" type="INTEGER" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="name" type="VARCHAR(80)"/>
+		</createTable>
+
+		<createIndex indexName="specialties_name" tableName="specialties">
+			<column name="name"/>
+		</createIndex>
+
+		<rollback>
+			<dropTable tableName="specialties"/>
+		</rollback>
+	</changeSet>
+
+	<!-- Create vet_specialties junction table -->
+	<changeSet id="003-create-vet-specialties-table" author="petclinic">
+		<createTable tableName="vet_specialties">
+			<column name="vet_id" type="INTEGER">
+				<constraints nullable="false"/>
+			</column>
+			<column name="specialty_id" type="INTEGER">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+
+		<addForeignKeyConstraint
+			baseTableName="vet_specialties"
+			baseColumnNames="vet_id"
+			constraintName="fk_vet_specialties_vets"
+			referencedTableName="vets"
+			referencedColumnNames="id"/>
+
+		<addForeignKeyConstraint
+			baseTableName="vet_specialties"
+			baseColumnNames="specialty_id"
+			constraintName="fk_vet_specialties_specialties"
+			referencedTableName="specialties"
+			referencedColumnNames="id"/>
+
+		<rollback>
+			<dropTable tableName="vet_specialties"/>
+		</rollback>
+	</changeSet>
+
+	<!-- Create pet types table -->
+	<changeSet id="004-create-types-table" author="petclinic">
+		<createTable tableName="types">
+			<column name="id" type="INTEGER" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="name" type="VARCHAR(80)"/>
+		</createTable>
+
+		<createIndex indexName="types_name" tableName="types">
+			<column name="name"/>
+		</createIndex>
+
+		<rollback>
+			<dropTable tableName="types"/>
+		</rollback>
+	</changeSet>
+
+	<!-- Create owners table -->
+	<changeSet id="005-create-owners-table" author="petclinic">
+		<createTable tableName="owners">
+			<column name="id" type="INTEGER" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="first_name" type="VARCHAR(30)"/>
+			<column name="last_name" type="VARCHAR(30)"/>
+			<column name="address" type="VARCHAR(255)"/>
+			<column name="city" type="VARCHAR(80)"/>
+			<column name="telephone" type="VARCHAR(20)"/>
+		</createTable>
+
+		<createIndex indexName="owners_last_name" tableName="owners">
+			<column name="last_name"/>
+		</createIndex>
+
+		<rollback>
+			<dropTable tableName="owners"/>
+		</rollback>
+	</changeSet>
+
+	<!-- Create pets table -->
+	<changeSet id="006-create-pets-table" author="petclinic">
+		<createTable tableName="pets">
+			<column name="id" type="INTEGER" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="name" type="VARCHAR(30)"/>
+			<column name="birth_date" type="DATE"/>
+			<column name="type_id" type="INTEGER">
+				<constraints nullable="false"/>
+			</column>
+			<column name="owner_id" type="INTEGER"/>
+		</createTable>
+
+		<addForeignKeyConstraint
+			baseTableName="pets"
+			baseColumnNames="owner_id"
+			constraintName="fk_pets_owners"
+			referencedTableName="owners"
+			referencedColumnNames="id"/>
+
+		<addForeignKeyConstraint
+			baseTableName="pets"
+			baseColumnNames="type_id"
+			constraintName="fk_pets_types"
+			referencedTableName="types"
+			referencedColumnNames="id"/>
+
+		<createIndex indexName="pets_name" tableName="pets">
+			<column name="name"/>
+		</createIndex>
+
+		<rollback>
+			<dropTable tableName="pets"/>
+		</rollback>
+	</changeSet>
+
+	<!-- Create visits table -->
+	<changeSet id="007-create-visits-table" author="petclinic">
+		<createTable tableName="visits">
+			<column name="id" type="INTEGER" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="pet_id" type="INTEGER"/>
+			<column name="visit_date" type="DATE"/>
+			<column name="description" type="VARCHAR(255)"/>
+		</createTable>
+
+		<addForeignKeyConstraint
+			baseTableName="visits"
+			baseColumnNames="pet_id"
+			constraintName="fk_visits_pets"
+			referencedTableName="pets"
+			referencedColumnNames="id"/>
+
+		<createIndex indexName="visits_pet_id" tableName="visits">
+			<column name="pet_id"/>
+		</createIndex>
+
+		<rollback>
+			<dropTable tableName="visits"/>
+		</rollback>
+	</changeSet>
+
+	<!-- Insert initial data for pet types -->
+	<changeSet id="008-insert-pet-types" author="petclinic">
+		<insert tableName="types">
+			<column name="name" value="cat"/>
+		</insert>
+		<insert tableName="types">
+			<column name="name" value="dog"/>
+		</insert>
+		<insert tableName="types">
+			<column name="name" value="lizard"/>
+		</insert>
+		<insert tableName="types">
+			<column name="name" value="snake"/>
+		</insert>
+		<insert tableName="types">
+			<column name="name" value="bird"/>
+		</insert>
+		<insert tableName="types">
+			<column name="name" value="hamster"/>
+		</insert>
+
+		<rollback>
+			<delete tableName="types"/>
+		</rollback>
+	</changeSet>
+
+	<!-- Insert initial data for specialties -->
+	<changeSet id="009-insert-specialties" author="petclinic">
+		<insert tableName="specialties">
+			<column name="name" value="radiology"/>
+		</insert>
+		<insert tableName="specialties">
+			<column name="name" value="surgery"/>
+		</insert>
+		<insert tableName="specialties">
+			<column name="name" value="dentistry"/>
+		</insert>
+
+		<rollback>
+			<delete tableName="specialties"/>
+		</rollback>
+	</changeSet>
+
+</databaseChangeLog>
