@@ -29,6 +29,10 @@ The application follows a standard Model-View-Controller (MVC) architecture.
 *   **src/java/org/springframework/samples/petclinic/web:** Web controllers.
 *  **src/test/java:** Contains unit and integration tests.
 
+**Rules and Conventions:**
+* Each endpoint must have Integration tests.
+* Each service method should have Integration tests.
+
 # Building and Running
 
 ## Running the application
